@@ -130,7 +130,7 @@ def train(args, params):
 @torch.no_grad()
 def test(args, model=None):
     if model is None:
-        model = torch.load('weights/B2.pt')['model']
+        model = torch.load('weights/best.pt')['model']
         model = model.float().fuse()
         model.cuda()
     model.eval()
@@ -214,7 +214,7 @@ def main():
     parser.add_argument('--local_rank', default=0, type=int)
     parser.add_argument('--benchmark', action='store_true')
     parser.add_argument('--epochs', default=120, type=int)
-    parser.add_argument('--train', default=True, action='store_true')
+    parser.add_argument('--train', action='store_true')
     parser.add_argument('--test', action='store_true')
 
     args = parser.parse_args()
